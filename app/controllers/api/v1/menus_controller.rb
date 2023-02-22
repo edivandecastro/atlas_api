@@ -1,6 +1,6 @@
 class Api::V1::MenusController < ApplicationController
   def index
-    menus = Menu.all
-    render json: { menus: menus }
+    menus = Menu.where(submenu_id: nil)
+    render json: menus, root: :menus
   end
 end
