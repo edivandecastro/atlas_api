@@ -16,10 +16,13 @@ ActiveRecord::Schema.define(version: 2023_02_17_105037) do
   enable_extension "plpgsql"
 
   create_table "menus", force: :cascade do |t|
+    t.integer "menu_type"
     t.string "icon"
     t.string "title"
     t.string "page_name"
+    t.boolean "secondary", default: true
     t.boolean "ignore"
+    t.integer "submenu_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
