@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_02_23_090606) do
+ActiveRecord::Schema.define(version: 2023_02_23_091247) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,6 +40,28 @@ ActiveRecord::Schema.define(version: 2023_02_23_090606) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "locations", force: :cascade do |t|
+    t.string "name"
+    t.string "project_name"
+    t.string "phone_number"
+    t.string "fiscal_company_number"
+    t.string "social_reason"
+    t.string "cost_center"
+    t.string "acronym"
+    t.date "openning_date"
+    t.integer "erp_id"
+    t.string "email"
+    t.integer "system_ticket"
+    t.string "acronym_origin"
+    t.integer "unified_location_id"
+    t.bigint "location_group_id", null: false
+    t.bigint "company_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["company_id"], name: "index_locations_on_company_id"
+    t.index ["location_group_id"], name: "index_locations_on_location_group_id"
+  end
+
   create_table "menus", force: :cascade do |t|
     t.integer "menu_type"
     t.string "icon"
@@ -53,4 +75,6 @@ ActiveRecord::Schema.define(version: 2023_02_23_090606) do
   end
 
   add_foreign_key "companies", "countries"
+  add_foreign_key "locations", "companies"
+  add_foreign_key "locations", "location_groups"
 end

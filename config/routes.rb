@@ -5,6 +5,7 @@ Rails.application.routes.draw do
       resources :countries
       resources :companies
       resources :location_groups
+      resources :locations
     end
   end
 end
