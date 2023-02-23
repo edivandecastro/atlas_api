@@ -4,6 +4,7 @@ Rails.application.routes.draw do
       resources :menus
       resources :countries
       resources :companies
+      resources :location_groups
     end
   end
 end
