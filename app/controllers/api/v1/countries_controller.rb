@@ -1,7 +1,14 @@
-class Api::V1::CountriesController < ApplicationController
+class Api::V1::CountriesController < Api::V1::ApplicationController
   def index
-    countries = Api::V1::Country.all
-    render json: countries, root: :countries
+    countries = Api::V1::Country.page(params[:page]).per(params[:limit])
+
+    render({
+      json: countries,
+      root: :countries,
+      each_serializer: Api::V1::CountrySerializer,
+      meta: meta_attributes(countries),
+      meta_key: 'extra'
+    })
   end
 
   def create
